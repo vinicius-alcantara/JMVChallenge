@@ -1,11 +1,11 @@
 #!/bin/bash
 ############################################################# 
-#							    #
-#	SCRIPT BACKUP - JMV TECHNOLOGY CHALLENGE            #
-#							    #
+#							                                       #
+#	       SCRIPT BACKUP - JMV TECHNOLOGY CHALLENGE          #
+#			                                    				   #
 #############################################################
 
-##### INFORMAÇÕES DE ACESSO - MYSQLI #####
+##### INFORMAÇÕES DE ACESSO - MYSQL #####
 ##########################################
 USER_MYSQL="root"
 PASS_MYSQL="h4ck3r1918"
@@ -13,7 +13,7 @@ HOST_MYSQL="localhost"
 DATABASE_MYSQL="curriculo"
 ##########################################
 
-##### INFORMAÇÕES DE ACESSO - MONGODB ####
+##### ACCESS INFO - MONGODB ####
 USER_MONGO="root"
 PASS_MONGO="h4ck3r1918"
 HOST_MONGO="localhost"
@@ -21,23 +21,17 @@ PORT_MONGO="27017"
 DATABASE_MONGO="admin"
 ##########################################
 
-######## EMAIL DE NOTIFICAÇÃO ############
-EMAIL_DST="vinicius.redes2011@gmail.com"
-SUBJECT_SUCCESS="BACKUP REALIZADO COM SUCESSO!"
-SUBJECT_ERROR="FALHA AO REALIZAR BACKUP!"
-##########################################
-
-########### PATH DOS COMANDOS ############
+########### COMMANDS PATHS ############
 MYSQLDUMP="$(which mysqldump)"
 MONGODUMP="$(which mongodump)"
 TAR="$(which tar)"
 ##########################################
 
-####### FORMATAÇÃO DE DATA E HORA ########
+####### FORMATE DATE AND HOUR ########
 NOW_DATE="$(date +"%Y%m%d-%H%M")"
 ##########################################
 
-######### ARQUIVOS E DIRETÓRIOS ##########
+######### FILES AND DIRECTORIES ##########
 FILE_EXTENSION=".tar.gz"
 FILE_NAME_DUMP_MYSQL="backupMySQL-$NOW_DATE.dump"
 FILE_NAME_DUMP_MONGO="backupMongo-$NOW_DATE.dump"
@@ -50,7 +44,7 @@ FILE_COMPACT_MYSQL="$FILE_NAME_DUMP_MYSQL$FILE_EXTENSION";
 FILE_COMPACT_MONGO="$FILE_NAME_DUMP_MONGO$FILE_EXTENSION";
 ##########################################
 
-###### FUNÇÃO DE BACKUP - MYSQL ##########
+###### BACKUP FUNCTION - MYSQL ##########
 function mysqlbk_dump(){
    if [ ! -e "$DIR_BK_DB" ]; then
       mkdir -p $DIR_BK_DB
@@ -62,7 +56,7 @@ function mysqlbk_dump(){
 }
 ##########################################
 
-###### FUNÇÃO DE BACKUP - MONGODB ########
+####### BACKUP FUNCTION - MONGODB ########
 function mongobk_dump(){
    if [ -e "$DIR_BK_DB" ]; then
       cd $DIR_BK_DB
@@ -73,7 +67,7 @@ function mongobk_dump(){
 }
 ##########################################
 
-### FUNÇÃO DE BACKUP DE ARQUIVOS - HOME ##
+########## BACKUP FUNCTION - HOME ########
 function homebk_dump(){
    if [ -e "$DIR_BK_RAIZ" ]; then
       cd $DIR_BK_RAIZ
@@ -82,13 +76,13 @@ function homebk_dump(){
 }
 ##########################################
 
-###### CHAMADA DE FUNÇÕES - BAKUPs #######
+###### CALL OF FUNCTIONS - BAKUPs #######
 mysqlbk_dump
 mongobk_dump
 homebk_dump
 ##########################################
 
-#### SINCRONIZANDO OS SRVs - RSYNC #######
+######## SERVER TIMMIMG - RSYNC ##########
 SRV_REMOTE="192.168.2.101"
 USER_SRV="bk"
 DIR_BK_DST="/backup/servidor_teste/"
@@ -96,7 +90,7 @@ RSYNC="$(which rsync)"
 LOG_FILE_RSYNC="rsync-bk.log"
 MAIL="$(which mail)"
 
-######## EMAIL DE NOTIFICAÇÃO ############
+########## NOTIFICATION EMAIL ############
 EMAIL_DST="vinicius.redes2011@gmail.com"
 EMAIL_SRC="root@vinicius-not"
 SUBJECT_SUCCESS="BACKUP REALIZADO COM SUCESSO!"
@@ -126,6 +120,3 @@ function containers_start(){
 
 containers_start
 ##########################################
-
-
-
