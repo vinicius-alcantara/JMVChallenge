@@ -1,8 +1,8 @@
 #!/bin/bash
 ############################################################# 
-#							                                       #
-#	       SCRIPT BACKUP - JMV TECHNOLOGY CHALLENGE          #
-#			                                    				   #
+#							      #
+#	  SCRIPT BACKUP - JMV TECHNOLOGY CHALLENGE          #
+#			                  #
 #############################################################
 
 ##### INFORMAÇÕES DE ACESSO - MYSQL #####
