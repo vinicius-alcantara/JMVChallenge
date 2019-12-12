@@ -14,7 +14,7 @@ m h  dom mon dow   command
 
 ## Dependencias no Servidor Docker Host
 
-* docker
+* Docker
 * Buildar as Imagens Base a partir dos Dockerfiles disponibilizados
 
 ## Dependencias no Servidor de Backup Remoto:
@@ -23,7 +23,7 @@ m h  dom mon dow   command
 * Instalar o rsync (Se for o caso - A maioria das distribuições já vem por padrão)
 * Criar o diretório de backup
 
-## Ajuste no Scrip backup_JMV.sh
+## Ajuste no Script backup_JMV.sh
 
 * Informar os valores corretos para as variáveis de acesso aos bancos de dados
 * Informar o valor (Endereço IP) correto na variável do servidor remoto 
