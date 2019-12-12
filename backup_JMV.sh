@@ -5,7 +5,7 @@
 #			                                    #
 #############################################################
 
-##### INFORMAÇÕES DE ACESSO - MYSQL #####
+########## ACCESS INFO - MYSQL ###########
 ##########################################
 USER_MYSQL="root"
 PASS_MYSQL="h4ck3r1918"
@@ -13,7 +13,8 @@ HOST_MYSQL="localhost"
 DATABASE_MYSQL="curriculo"
 ##########################################
 
-##### ACCESS INFO - MONGODB ####
+########## ACCESS INFO - MONGODB #########
+##########################################
 USER_MONGO="root"
 PASS_MONGO="h4ck3r1918"
 HOST_MONGO="localhost"
@@ -21,17 +22,20 @@ PORT_MONGO="27017"
 DATABASE_MONGO="admin"
 ##########################################
 
-########### COMMANDS PATHS ############
+############ COMMANDS PATHS ##############
+##########################################
 MYSQLDUMP="$(which mysqldump)"
 MONGODUMP="$(which mongodump)"
 TAR="$(which tar)"
 ##########################################
 
-####### FORMATE DATE AND HOUR ########
+######### FORMATE DATE AND HOUR ##########
+##########################################
 NOW_DATE="$(date +"%Y%m%d-%H%M")"
 ##########################################
 
 ######### FILES AND DIRECTORIES ##########
+##########################################
 FILE_EXTENSION=".tar.gz"
 FILE_NAME_DUMP_MYSQL="backupMySQL-$NOW_DATE.dump"
 FILE_NAME_DUMP_MONGO="backupMongo-$NOW_DATE.dump"
@@ -45,6 +49,7 @@ FILE_COMPACT_MONGO="$FILE_NAME_DUMP_MONGO$FILE_EXTENSION";
 ##########################################
 
 ###### BACKUP FUNCTION - MYSQL ##########
+#########################################
 function mysqlbk_dump(){
    if [ ! -e "$DIR_BK_DB" ]; then
       mkdir -p $DIR_BK_DB
@@ -57,6 +62,7 @@ function mysqlbk_dump(){
 ##########################################
 
 ####### BACKUP FUNCTION - MONGODB ########
+##########################################
 function mongobk_dump(){
    if [ -e "$DIR_BK_DB" ]; then
       cd $DIR_BK_DB
@@ -68,6 +74,7 @@ function mongobk_dump(){
 ##########################################
 
 ########## BACKUP FUNCTION - HOME ########
+##########################################
 function homebk_dump(){
    if [ -e "$DIR_BK_RAIZ" ]; then
       cd $DIR_BK_RAIZ
@@ -77,12 +84,14 @@ function homebk_dump(){
 ##########################################
 
 ###### CALL OF FUNCTIONS - BAKUPs #######
+#########################################
 mysqlbk_dump
 mongobk_dump
 homebk_dump
 ##########################################
 
 ######## SERVER TIMMIMG - RSYNC ##########
+##########################################
 SRV_REMOTE="192.168.2.101"
 USER_SRV="bk"
 DIR_BK_DST="/backup/servidor_teste/"
@@ -91,6 +100,7 @@ LOG_FILE_RSYNC="rsync-bk.log"
 MAIL="$(which mail)"
 
 ########## NOTIFICATION EMAIL ############
+##########################################
 EMAIL_DST="vinicius.redes2011@gmail.com"
 EMAIL_SRC="root@vinicius-not"
 SUBJECT_SUCCESS="BACKUP REALIZADO COM SUCESSO!"
@@ -112,6 +122,7 @@ rsync_conn
 ##########################################
 
 ########### CONTAINERs START #############
+##########################################
 DOCKER="$(which docker)"
 function containers_start(){
     $DOCKER container run -td -v /backup:/backups --name debian debian:1.0 1> /dev/null	
