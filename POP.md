@@ -9,7 +9,7 @@
 * Definir o agendamento da execução do script na cron
 
 ### Exemplo de agendamento (/etc/crontab ou crontab -e para modificar o arquivo): 
-m h  dom mon dow   command
+
 00 03 * * * /bin/bash -c  /home/vinicius/JMVChallenge/backup_JMV.sh
 
 ## Dependencias no Servidor Docker Host
