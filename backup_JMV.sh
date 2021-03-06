@@ -83,7 +83,7 @@ function homebk_dump(){
 }
 ##########################################
 
-###### CALL OF FUNCTIONS - BAKUPs #######
+###### CALL OF FUNCTIONS - BACKUPs #######
 #########################################
 mysqlbk_dump
 mongobk_dump
